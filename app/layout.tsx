@@ -1,3 +1,14 @@
+import '@/app/ui/global.css';
+import { inter } from '@/app/ui/fonts';
+import SideNavbar from './ui/navigation/sidenav';
+import Footer from './ui/navigation/footer';
+
+
+export const metadata = {
+  title: "Tropical",
+  description: "Landscaping",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -5,7 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        <SideNavbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

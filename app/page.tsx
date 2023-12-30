@@ -1,21 +1,71 @@
-import AcmeLogo from '@/app/ui/acme-logo';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import TropLogo from '@/app/ui/trop-logo';
+import SideNav from '@/app/ui/navigation/sidenav';
+
+import { ArrowRightIcon, ArrowDownIcon } from '@heroicons/react/24/outline';
+
 import Link from 'next/link';
+import styles from '@/app/ui/home.module.css';
+import { lusitana, open_sans } from '@/app/ui/fonts';
+import Image from 'next/image';
+import SideNavbar from '@/app/ui/navigation/sidenav';
+import { ScrollButton } from './ui/scrollbutton';
+
+
 
 export default function Page() {
+ 
   return (
-    <main className="flex min-h-screen flex-col p-6">
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
-        {/* <AcmeLogo /> */}
+    
+    <main className="flex min-h-screen flex-col p-0">
+      
+      <div  id="hero-image"  className="flex shrink-0 items-end rounded-lg bg-white-500 z-10" >
+        {/* <TropLogo /> */}
       </div>
-      <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
+       <div className="relative w-full mx-auto">
+          {/* Hero Image for Desktop */}
+          <Image
+            src="/heroscape.png"
+            layout="responsive"
+            width={1200}
+            height={1200}
+            className="hidden md:block h-auto max-w-full"
+            alt="Hero Image for Desktop"
+          />
+
+          {/* Hero Image for Mobile */}
+          <Image
+            src="/heroscape.png"
+            layout="responsive"
+            width={560}
+            height={620}
+            className="block md:hidden h-auto max-w-full"
+            alt="Hero Image for Mobile"
+          />
+
+          {/* Overlay for better text readability (Optional) */}
+          <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+
+
+          {/* Text or Content over the Image (Optional) */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
+            <h1 className="text-4xl md:text-6xl font-bold">Your Landscape Journey Begins Here</h1>
+            <p className="text-lg md:text-2xl">Transforming spaces since 1996</p>
+          </div>
+
+          {/* Explore More Button */}
+          <div className="flex-col absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+              <ScrollButton targetId="section2" className="mt-4">
+                Explore More
+                <ArrowDownIcon className="w-5 ml-2 block transform hover:scale-110 transition-transform duration-300" />
+              </ScrollButton>
+ 
+          </div>
+        </div>
+
+      <div className="mt-4 flex grow flex-col gap-4 md:flex-row" id="section2">
         <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
-          <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Acme.</strong> This is the example for the{' '}
-            <a href="https://nextjs.org/learn/" className="text-blue-500">
-              Next.js Learn Course
-            </a>
-            , brought to you by Vercel.
+             <p className={`${open_sans.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}>
+            <strong>Welcome to Tropical Landscaping!</strong> A landscape company serving the Bay Area since 1996
           </p>
           <Link
             href="/login"
@@ -24,10 +74,37 @@ export default function Page() {
             <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
           </Link>
         </div>
-        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          {/* Add Hero Images Here */}
+       <div className="relative w-full h-full mx-auto mx-6">
+          {/* Hero Image for Desktop */}
+          <Image
+            src="/heroscape.png"
+            layout="responsive"
+            width={1200}
+            height={1200}
+            className="hidden md:block h-auto max-w-full"
+            alt="Hero Image for Desktop"
+          />
+
+          {/* Hero Image for Mobile */}
+          <Image
+            src="/heroscape.png"
+            layout="responsive"
+            width={560}
+            height={620}
+            className="block md:hidden h-auto max-w-full"
+            alt="Hero Image for Mobile"
+          />
+
+          {/* Overlay for better text readability (Optional) */}
+          <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+
+
+          {/* Text or Content over the Image (Optional) */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
+            <h6 className="text-xl md:text-xl font-bold">Breathtaking Scenic Landscapes</h6>
+          </div>
         </div>
-      </div>
+        </div>
     </main>
   );
 }
