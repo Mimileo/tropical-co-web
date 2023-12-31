@@ -47,19 +47,26 @@ export default function Page() {
 
 
           {/* Text or Content over the Image (Optional) */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
-            <h1 className="text-4xl md:text-6xl font-bold">Your Landscape Journey Begins Here</h1>
-            <p className="text-lg md:text-2xl">Transforming spaces since 1996</p>
-          </div>
+          <div className="absolute w-full lg:w-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
+          <h1 className="text-4xl  md:text-6xl font-bold sm:text-5xl lg:text-7xl mb-4 sm:mb-6 lg:mb-8">
+            Your Landscaping Journey Begins Here
+          </h1>
+          <p className="text-base md:text-lg lg:text-xl mb-6 sm:mb-8 lg:mb-10">
+            Transforming spaces since 1996
+          </p>
 
-          {/* Explore More Button */}
-          <div className="flex-col absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
-              <ScrollButton targetId="section2" className="mt-4">
+             {/* Explore More Button */}
+            <div className="flex flex-col items-center mt-8">
+              <ScrollButton targetId="section2">
                 Explore More
                 <ArrowDownIcon className="w-5 ml-2 block transform hover:scale-110 transition-transform duration-300" />
               </ScrollButton>
- 
+            </div>
+                
+         
           </div>
+
+        
         </div>
 
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row" id="section2">
@@ -74,7 +81,7 @@ export default function Page() {
             <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
           </Link>
         </div>
-       <div className="relative w-full h-full mx-auto mx-6">
+       <div className="relative w-full h-full gap-4 md:flex-row flex-col">
           {/* Hero Image for Desktop */}
           <Image
             src="/heroscape.png"
