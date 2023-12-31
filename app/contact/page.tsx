@@ -7,8 +7,8 @@ export default function Page() {
     
      
       <div className="bg-white-100 min-h-screen">
-      <header className="bg-white-700 text-black text-center m-8">
-        <h1 className="text-3xl font-bold text-left ml-40">Contact Us</h1>
+      <header className="max-w-4xl mx-auto mt-8 bg-white p-8">
+        <h1 className="text-3xl font-bold text-left">Contact Us</h1>
       </header>
 
       <section className="max-w-4xl mx-auto mt-8 bg-white p-8 ">
