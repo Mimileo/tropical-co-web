@@ -25,9 +25,7 @@ export default function Page() {
         <p className="mt-8 mb-4 text-center" ><strong>Transform Your Landscape Today!</strong></p>
         <p className="mt-8 mb-4 mx-30">Contact us to schedule a consultation and experience the difference our premium maintenance services can make. Let us bring out the full potential of your outdoor environment, ensuring it remains a source of pride and joy year-round.</p>
 
-        <a href="#contact" className="mt-6 inline-block px-4 py-2 bg-green-700 text-white rounded-md transition duration-300 hover:bg-green-600">
-          Contact Us
-        </a>
+      
       </section>
     </div>
              

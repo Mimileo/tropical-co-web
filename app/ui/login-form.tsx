@@ -7,6 +7,13 @@ import {
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from './button';
 
+
+type LoginFormInputs = {
+  email: string
+  password: string
+}
+
+
 export default function LoginForm() {
   return (
     <form className="space-y-3">
