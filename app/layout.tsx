@@ -24,7 +24,7 @@ export default function RootLayout({
       <title>Canonical Tag Example</title>
       <link
         rel="canonical"
-        href="https:/https://www.tropicallandscaping.tech/"
+        href="https://www.tropicallandscaping.tech/"
         key="canonical" />
     </Head>
       <body className={`${inter.className} antialiased`}>
