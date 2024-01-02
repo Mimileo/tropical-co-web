@@ -9,7 +9,7 @@ export const metadata = {
   title: "Tropical",
   description: "Landscaping",
     alternates: {
-        canonical: 'https:/https://www.tropicallandscaping.tech',
+        canonical: 'https://www.tropicallandscaping.tech',
       },
 };
 
