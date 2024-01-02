@@ -2,6 +2,7 @@ import TropLogo from '@/app/ui/trop-logo';
 import SideNav from '@/app/ui/navigation/sidenav';
 
 import { ArrowRightIcon, ArrowDownIcon } from '@heroicons/react/24/outline';
+import Head from 'next/head';
 
 import Link from 'next/link';
 import styles from '@/app/ui/home.module.css';
