@@ -25,7 +25,7 @@ export default function Page() {
         </div>
         <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
           <p className={`${open_sans.className} text-xl text-gray-800 md:text-xl md:leading-normal`}>
-            <strong>Tropical Landscaping</strong> is a small buisness located in the salad bowl of the world. With over 10 plus years of providng services to the tricounty, you can rely on the Tropical Landscaping team from maintenance to a complete garden rennovation.
+            <strong>Tropical Landscaping</strong> is a small buisness located in Salinas, California, the salad bowl of the world! With over 10 plus years of providng services to the tricounty, you can rely on the Tropical Landscaping team from maintenance to a complete garden rennovation.
           </p>
           <div className="mb-3 flex space-x-4">
           
