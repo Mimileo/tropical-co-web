@@ -53,7 +53,7 @@ export default function Page() {
             Your Landscaping Journey Begins Here
           </h1>
           <p className="text-base md:text-lg lg:text-xl mb-6 sm:mb-8 lg:mb-10">
-            Transforming spaces since 1996
+            Transforming spaces since 2004
           </p>
 
              {/* Explore More Button */}
@@ -73,7 +73,7 @@ export default function Page() {
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row" id="section2">
         <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
              <p className={`${open_sans.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Tropical Landscaping!</strong> A landscape company serving the Bay Area since 1996
+            <strong>Welcome to Tropical Landscaping!</strong> A landscape company serving the Bay Area since 2004
           </p>
           <Link
             href="/login"

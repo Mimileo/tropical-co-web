@@ -27,6 +27,7 @@ export default function Page() {
           <p className={`${open_sans.className} text-xl text-gray-800 md:text-xl md:leading-normal`}>
             <strong>Tropical Landscaping</strong> is a small buisness located in Salinas, California, the salad bowl of the world! With over 10 plus years of providng services to the tricounty, you can rely on the Tropical Landscaping team from maintenance to a complete garden rennovation.
           </p>
+          <p>Call us at (831) 663 - 4616 for a consultation!</p>
           <div className="mb-3 flex space-x-4">
           
         </div>
