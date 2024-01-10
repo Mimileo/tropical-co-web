@@ -14,7 +14,7 @@ export default function Footer() {
           <div>{` • `}</div>
         </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-         <a class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline" href="mailto:tropicallandscaping68@gmail.com">tropicallandscaping68@gmail.com</a>
+         <a className="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline" href="mailto:tropicallandscaping68@gmail.com">tropicallandscaping68@gmail.com</a>
         </div>
       </div>
     </footer>
