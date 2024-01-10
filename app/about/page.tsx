@@ -24,11 +24,23 @@ export default function Page() {
             />
         </div>
         <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          <p className={`${open_sans.className} text-xl text-gray-800 md:text-xl md:leading-normal`}>
-            <strong>Tropical Landscaping</strong> is a small buisness located in Salinas, California, the salad bowl of the world! With over 10 plus years of providng services to the tricounty, you can rely on the Tropical Landscaping team from maintenance to a complete garden rennovation.
+        <div className="mb-3 flex-col space-x-12">
+          <p className={`${open_sans.className} text-xl text-gray-800 md:text-xl md:leading-normal mb-20`}>
+            <strong>Tropical Landscaping</strong> is a small buisness located in Salinas, California, 
+            the salad bowl of the world! With over 10 plus years of providng services to the tricounty, you
+             can rely on the Tropical Landscaping 
+            team from maintenance to a complete garden rennovation.
+
+
           </p>
-          <p>Call us at (831) 663 - 4616 for a consultation!</p>
-          <div className="mb-3 flex space-x-4">
+
+          <p className={`${open_sans.className} text-xl text-gray-800 md:text-xl md:leading-normal`}>
+          <strong>Call us at <a className="font-bold text-blue-600 underline dark:text-blue-500 hover:no-underline" href={"tel:8316634616"}>(831) 663 - 4616</a> for a consultation! </strong>
+          </p>
+          
+        </div>
+        
+        <div className="mb-3 flex space-x-4">
           
         </div>
             

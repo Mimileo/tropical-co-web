@@ -3,6 +3,7 @@ import { inter } from '@/app/ui/fonts';
 import SideNavbar from './ui/navigation/sidenav';
 import Footer from './ui/navigation/footer';
 import Head from 'next/head';
+import Script from 'next/script';
 
 
 export const metadata = {
@@ -42,6 +43,17 @@ export default function RootLayout({
         href="https://www.tropicallandscaping.tech/"
         key="canonical" />
     </Head>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-2TJXKRK8WP" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-2TJXKRK8WP');
+        `}
+      </Script>
+    
       <body className={`${inter.className} antialiased`}>
         <SideNavbar />
         {children}
