@@ -12,7 +12,6 @@ import SideNavbar from '@/app/ui/navigation/sidenav';
 import { ScrollButton } from './ui/scrollbutton';
 
 
-
 export default function Page() {
  
   return (
@@ -22,6 +21,10 @@ export default function Page() {
       <div  id="hero-image"  className="flex shrink-0 items-end rounded-lg bg-white-500 z-10" >
         {/* <TropLogo /> */}
       </div>
+
+     
+
+      
        <div className="relative w-full mx-auto">
           {/* Hero Image for Desktop */}
           <Image
