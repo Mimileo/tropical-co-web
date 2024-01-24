@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { lusitana, open_sans } from "../ui/fonts";
-import ContactForm from "../ui/contact-form";
+import { ContactForm } from "../ui/contact-form";
+
 
 
 export default function Page() {
@@ -13,10 +13,11 @@ export default function Page() {
       </header>
 
       <section className="max-w-4xl mx-auto mt-8 bg-white p-8 ">
-        <h4 className="text-xl text-black-800 mb-6 text-center">Please feel free to reach out: </h4>
+      <h2 className="text-xl font-semibold mb-4 mx auto text-center">Contact us for inquiries or consultation!</h2>
+
 
          
-            <ContactForm />
+      <ContactForm />
        
        
        

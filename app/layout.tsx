@@ -2,11 +2,11 @@ import '@/app/ui/global.css';
 import { inter } from '@/app/ui/fonts';
 import SideNavbar from './ui/navigation/sidenav';
 import Footer from './ui/navigation/footer';
-import Head from 'next/head';
 import Script from 'next/script';
+import { Metadata } from 'next'
 
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Tropical",
   description: "Landscaping",
   alternates: {
@@ -36,13 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-       <Head>
-      <title>Canonical Tag Example</title>
-      <link
-        rel="canonical"
-        href="https://www.tropicallandscaping.tech/"
-        key="canonical" />
-    </Head>
+     
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-2TJXKRK8WP" />
       <Script id="google-analytics">
         {`
@@ -54,7 +48,7 @@ export default function RootLayout({
         `}
       </Script>
     
-      <body className={`${inter.className} antialiased`}>
+      <body suppressHydrationWarning={true} className={`${inter.className} antialiased`}>
         <SideNavbar />
         {children}
         <Footer />

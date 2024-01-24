@@ -1,52 +1,99 @@
-"use client"
-import { useForm, SubmitHandler } from "react-hook-form"
+// ContactForm component
+'use client';
 
+import { FormEvent, useState } from 'react';
 
-type ContactFormInputs = {
-  email: string
-  mail: string
-}
+export const ContactForm = () => {
+  const [message, setMessage] = useState<string>('');
+  const [status, setStatus] = useState<string>('');
+  const [disabled, setDisabled] = useState<boolean>(false);
 
+  const onContactFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData: { [key: string]: string } = {};
+    const elements = e.currentTarget.elements as unknown as Array<
+      HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement
+    >;
 
-export default function ContactForm() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<ContactFormInputs>()
-  const onSubmit: SubmitHandler<ContactFormInputs> = (data) => console.log(data)
+    Array.from(elements).forEach((field) => {
+      if (!field.name) return;
+      formData[field.name] = field.value;
+    });
 
-
-  console.log(watch("email")) // watch input value by passing the name of it
-
+    await fetch('/api/email', {
+      method: 'POST',
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setMessage(res.message);
+        setStatus(res.status);
+        setDisabled(res.message.length > 0);
+      });
+  };
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <form onSubmit={handleSubmit(onSubmit)}  className="w-full max-w-lg m-auto py-10 mt-10 px-10 border">
-      {/* register your input into the hook by invoking the "register" function */}
-        <label className="text-gray-600 font-medium">Email</label>
+    <div className="max-w-md mx-auto my-8 p-6 bg-white rounded-lg shadow-md">
 
-      <input  className="border-solid border-gray-300 border py-2 px-4 w-full
-    rounded text-gray-700"  placeholder="email" {...register("email")} />
-
-
-      {/* include validation with required or other standard HTML validation rules */}
-    
-
-       <label className="text-gray-600 font-medium block mt-4">Message</label>
-        <textarea className="border-solid border-gray-300 border py-20 px-4 w-full
-        rounded text-gray-700" rows={5} cols={5} {...register("mail", {
-        required: "Please send your message" })} /> {errors.mail && (
-        <div className="mb-3 text-normal text-red-500 ">
-          {errors.mail.message}
+      <form className="space-y-4" onSubmit={onContactFormSubmit}>
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+            Name
+          </label>
+          <input
+            type="text"
+            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            name="name"
+            id="name"
+            required
+            disabled={disabled}
+          />
         </div>
-        )}
 
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+            Email
+          </label>
+          <input
+            type="email"
+            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            name="email"
+            id="email"
+            required
+            disabled={disabled}
+          />
+        </div>
 
-      <input        className="mt-6 inline-block px-4 py-2 bg-green-700 text-white rounded-md transition duration-300 hover:bg-green-600"
-type="submit" />
-    </form>
-  )
-}
+        <div>
+          <label htmlFor="message" className="block text-sm font-medium text-gray-600">
+            Message
+          </label>
+          <textarea
+            rows={3}
+            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            name="message"
+            id="message"
+            required
+            disabled={disabled}
+          ></textarea>
+        </div>
 
+        <button
+          type="submit"
+          className={`w-full p-2 bg-green-500 text-white rounded-md ${disabled ? 'cursor-not-allowed opacity-50' : 'hover:bg-green-600'}`}
+          disabled={disabled}
+        >
+          Send Message
+        </button>
+      </form>
+
+      {message.length > 0 ? (
+        <div
+          className={`mt-4 p-2 rounded-md ${status === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
+        >
+          <span>{message}</span>
+        </div>
+      ) : null}
+    </div>
+  );
+};

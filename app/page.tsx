@@ -6,6 +6,8 @@ import Head from 'next/head';
 
 import Link from 'next/link';
 import styles from '@/app/ui/home.module.css';
+import { Metadata } from 'next'
+
 import { lusitana, open_sans } from '@/app/ui/fonts';
 import Image from 'next/image';
 import SideNavbar from '@/app/ui/navigation/sidenav';
