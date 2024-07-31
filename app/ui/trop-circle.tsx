@@ -2,13 +2,13 @@ import { GlobeAltIcon } from '@heroicons/react/24/outline';
 import { lusitana, open_sans } from '@/app/ui/fonts';
 import Image from 'next/image';
 
-export default function TropLogo() {
+export default function TropCircle() {
   return (
     <div
-      className={`${open_sans.className} flex flex-row items-center leading-none text-white`}
+      className={`${open_sans.className} flex flex-row items-center leading-none text-white space-x-4 `}
     >
         <Image
-              src="/vector.svg"
+              src="/avatarlight.svg"
               width={50}
               height={50}
               className="md:block"

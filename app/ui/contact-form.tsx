@@ -80,7 +80,7 @@ export const ContactForm = () => {
 
         <button
           type="submit"
-          className={`w-full p-2 bg-green-500 text-white rounded-md ${disabled ? 'cursor-not-allowed opacity-50' : 'hover:bg-green-600'}`}
+          className={`w-full p-2 bg-blue-400 text-white rounded-md ${disabled ? 'cursor-not-allowed opacity-50' : 'hover:bg-blue-600'}`}
           disabled={disabled}
         >
           Send Message
