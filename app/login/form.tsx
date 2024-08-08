@@ -1,26 +1,54 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useSession, signIn } from 'next-auth/react';
 import { lusitana, open_sans } from '@/app/ui/fonts';
 import {
   AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
 } from '@heroicons/react/24/outline';
-import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/app/ui/button';
-import { useFormState } from "react-dom";
-import { authenticate } from '@/app/lib/actions';
-import { Open_Sans } from 'next/font/google';
 import Alert from '../ui/alert';
 
 export default function LoginForm() {
-  const [errorMessage, formAction] = useFormState(
-    authenticate,
-    undefined,
-  );
+  const { data: session, status } = useSession();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect logged-in users away from the login page
+    if (status === 'authenticated') {
+      // Prevent looping redirect
+      if (window.location.pathname !== '/dashboard') {
+        router.push('/dashboard');
+      }
+    }
+  }, [status, router]);
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setErrorMessage(null);
+
+    const result = await signIn('credentials', {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (result?.error) {
+      setErrorMessage(result.error);
+    } else if (result?.ok) {
+      // Redirect to the dashboard
+      router.push('/dashboard');
+    }
+  };
 
   return (
-    <form action={formAction} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
         <h1 className={`${open_sans.className} mb-3 text-2xl`}>
           Please log in to continue.
@@ -41,6 +69,8 @@ export default function LoginForm() {
                 type="email"
                 name="email"
                 placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -60,6 +90,8 @@ export default function LoginForm() {
                 type="password"
                 name="password"
                 placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={6}
               />
@@ -67,18 +99,16 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <Button className="flex items-center justify-center mt-4 w-full" >
+        <Button className="flex items-center justify-center mt-4 w-full" type="submit">
           Log in 
         </Button>
       </div>
 
-       {errorMessage && (
-          <div >
-           
-            <Alert type="error" message={errorMessage} icon={<ExclamationCircleIcon className="h-5 w-5" />} />
-
-          </div>
-        )}
+      {errorMessage && (
+        <div>
+          <Alert type="error" message={errorMessage} icon={<ExclamationCircleIcon className="h-5 w-5" />} />
+        </div>
+      )}
     </form>
   );
 }

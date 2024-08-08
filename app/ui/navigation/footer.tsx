@@ -1,11 +1,16 @@
 import Link from "next/link";
+import { FaYelp, FaLinkedin, } from "react-icons/fa";
+import { GrInstagram } from "react-icons/gr";
+import IconButton from "../icon-button";
 
 export default function Footer() {
   return (
     <footer>
       <div className="mt-16 flex flex-col items-center">
         <div className="mb-3 flex space-x-4">
-          <Link href={"https://www.yelp.com/biz/tropical-landscaping-salinas"} />
+          <IconButton href="https://www.yelp.com/biz/tropical-landscaping-salinas" icon={FaYelp} colorClass="text-red-500" />
+          <IconButton href="#" icon={FaLinkedin} colorClass="text-blue-500" />
+          <IconButton href="#" icon={GrInstagram} colorClass="text-pink-500" />
         </div>
         <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
           <div>Tropical Landscaping</div>

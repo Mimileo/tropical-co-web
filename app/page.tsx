@@ -1,11 +1,23 @@
+'use client';
+
 import { ArrowRightIcon, ArrowDownIcon } from '@heroicons/react/24/outline';
-import Head from 'next/head';
-import Link from 'next/link';
-import { lusitana, open_sans } from '@/app/ui/fonts';
 import Image from 'next/image';
+import { lusitana, open_sans } from '@/app/ui/fonts';
 import { ScrollButton } from './ui/scrollbutton';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  // Handle navigation if user is signed in and tries to access the login page
+  if (status === 'authenticated') {
+   // router.push('/dashboard');
+   // return null; // Prevent rendering the page while redirecting
+  }
+
   return (
     <main className="flex min-h-screen flex-col p-0">
       
@@ -59,12 +71,24 @@ export default function Page() {
           <p className={`${open_sans.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}>
             <strong>Welcome to Tropical Landscaping!</strong> A landscape company serving the Bay Area since 2004
           </p>
-          <Link
-            href="/login"
-            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
-          >
-            <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
-          </Link>
+          {status === 'unauthenticated' ? (
+              <Link
+              href="/login"
+              className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
+            >
+              <span>Log in</span>
+              <ArrowRightIcon className="w-5 md:w-6" />
+            </Link>
+           
+          ) : (
+           <Link
+              href="/dashboard"
+              className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
+            >
+              <span>Dashboard</span>
+              <ArrowRightIcon className="w-5 md:w-6" />
+            </Link>
+          )}
         </div>
 
         <div className="relative w-full h-full gap-4 md:flex-row flex-col">

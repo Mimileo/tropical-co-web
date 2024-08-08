@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { FaBars, FaTimes, FaTachometerAlt } from "react-icons/fa"; // Import dashboard icon
 import { useSession } from "next-auth/react";
 import TropLogo from "../trop-logo";
+import { AiFillDashboard } from "react-icons/ai";
 
 const MainNav = () => {
   const [nav, setNav] = useState(false);
@@ -52,16 +53,7 @@ const MainNav = () => {
       </div>
 
       <ul className="hidden md:flex">
-        {session && (
-          <li
-            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline"
-          >
-            <Link href="/dashboard">
-              <FaTachometerAlt size={20} className="inline-block mr-2" />
-              Dashboard
-            </Link>
-          </li>
-        )}
+       
         {links.map(({ id, link, name }) => (
           <li
             key={id}
@@ -70,6 +62,18 @@ const MainNav = () => {
             <Link href={link}>{name}</Link>
           </li>
         ))}
+
+         {session && (
+          <li
+            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline"
+          >
+            <Link href="/dashboard">
+            <AiFillDashboard aria-label="dashboard" size={20} className="inline-block mr-2"/>
+
+
+            </Link>
+          </li>
+        )}
       </ul>
 
       <div
