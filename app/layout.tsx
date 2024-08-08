@@ -1,9 +1,11 @@
 import '@/app/ui/global.css';
 import { inter } from '@/app/ui/fonts';
-import SideNavbar from './ui/navigation/sidenav';
+import SideNavbar from './ui/navigation/main-nav';
 import Footer from './ui/navigation/footer';
 import Script from 'next/script';
 import { Metadata } from 'next'
+import MainNav from './ui/navigation/main-nav';
+import { SessionProvider } from 'next-auth/react';
 
 
 export const metadata: Metadata = {
@@ -49,9 +51,11 @@ export default function RootLayout({
       </Script>
     
       <body suppressHydrationWarning={true} className={`${inter.className} antialiased`}>
-        <SideNavbar />
-        {children}
-        <Footer />
+        <SessionProvider>
+          <MainNav />
+          {children}
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   );

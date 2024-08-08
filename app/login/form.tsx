@@ -1,5 +1,5 @@
 'use client';
- 
+
 import { lusitana, open_sans } from '@/app/ui/fonts';
 import {
   AtSymbolIcon,
@@ -11,19 +11,21 @@ import { Button } from '@/app/ui/button';
 import { useFormState } from "react-dom";
 import { authenticate } from '@/app/lib/actions';
 import { Open_Sans } from 'next/font/google';
- 
+import Alert from '../ui/alert';
+
 export default function LoginForm() {
   const [errorMessage, formAction] = useFormState(
     authenticate,
     undefined,
   );
- 
+
   return (
     <form action={formAction} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
         <h1 className={`${open_sans.className} mb-3 text-2xl`}>
           Please log in to continue.
         </h1>
+       
         <div className="w-full">
           <div>
             <label
@@ -68,9 +70,15 @@ export default function LoginForm() {
         <Button className="flex items-center justify-center mt-4 w-full" >
           Log in 
         </Button>
-      
       </div>
+
+       {errorMessage && (
+          <div >
+           
+            <Alert type="error" message={errorMessage} icon={<ExclamationCircleIcon className="h-5 w-5" />} />
+
+          </div>
+        )}
     </form>
   );
 }
-

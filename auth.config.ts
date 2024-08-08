@@ -1,24 +1,38 @@
-import type { NextAuthConfig } from "next-auth"
+import type { NextAuthConfig } from 'next-auth';
 
-export const authConfig = {
+export const authConfig: NextAuthConfig = {
   pages: {
     signIn: '/login',
   },
-  providers: [
-    // added later in auth.ts since it requires bcrypt which is only compatible with Node.js
-    // while this file is also used in non-Node.js environments
-  ],
+  providers: [],
   callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
+    async authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
-      if (isOnDashboard) {
-        if (isLoggedIn) return true;
-        return false; // Redirect unauthenticated users to login page
-      } else if (isLoggedIn) {
-        return Response.redirect(new URL('/dashboard', nextUrl));
+      const isOnLoginPage = nextUrl.pathname === '/login';
+
+      // Allow access to the login page for all users
+      if (isOnLoginPage) {
+        return true;
       }
+
+      // Allow access to the MainNav and other public pages for logged-in users
+      if (!isOnDashboard && !isOnLoginPage) {
+        return true;
+      }
+
+      // Redirect logged-in users to the dashboard if trying to access non-allowed pages
+      if (isLoggedIn && isOnDashboard) {
+        return true;
+      }
+
+      // For non-logged-in users, redirect to login page if accessing restricted pages
+      if (!isLoggedIn && isOnDashboard) {
+        return Response.redirect(new URL('/login', nextUrl));
+      }
+
+      // Default case: allow access
       return true;
     },
   },
-} satisfies NextAuthConfig;
+};

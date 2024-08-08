@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     to: ['tropicallandscaping68@gmail.com', 'mireyaleon76@gmail.com'], 
     from: 'rayleon@tropicallandscaping.tech',
     replyTo: body.email,
-    subject: 'CLeint Message via Tropical Landscaping Tech',
+    subject: 'Client Message via Tropical Landscaping Tech',
     text: message,
     html: message.replace(/\r\n/g, '<br>'),
   };

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { lusitana, open_sans } from "../ui/fonts";
-import SideNavbar from "../ui/navigation/sidenav";
+import SideNavbar from "../ui/navigation/main-nav";
 import TropLogo from "../ui/trop-logo";
 import Image from 'next/image';
 
