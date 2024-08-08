@@ -16,7 +16,7 @@ export default function Page() {
         <h1 className="text-3xl font-bold text-left">Our Landscaping Services</h1>
       </header>
 
-      <section className="max-w-4xl mx-auto mt-8 bg-white p-8 ">
+      <section className="max-w-4xl mx-auto mt-8 bg-white p-8">
         <h2 className="font-bold mb-6 text-center">Tropical Landscaping offers a variety of services, including: </h2>
 
            <div className="text-center"> 
@@ -24,7 +24,7 @@ export default function Page() {
            </div>
 
         <h3 className="font-bold mt-8 mb-4 text-center">
-        Whether it's the backyard, front yard, or garden, our expert landscaping services specialize in creating stunning backyard designs that enhance your outdoor living space.
+        Whether it is the backyard, front yard, or garden, our expert landscaping services specialize in creating stunning backyard designs that enhance your outdoor living space.
         </h3>
         <p className="mt-8 mb-4 mx-30">Contact us to schedule a consultation and experience the difference our premium maintenance services can make. Let us bring out the full potential of your outdoor environment, ensuring it remains a source of pride and joy year-round.</p>
 
