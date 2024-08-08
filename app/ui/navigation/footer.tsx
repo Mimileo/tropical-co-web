@@ -8,9 +8,9 @@ export default function Footer() {
     <footer>
       <div className="mt-16 flex flex-col items-center">
         <div className="mb-3 flex space-x-4">
-          <IconButton href="https://www.yelp.com/biz/tropical-landscaping-salinas" icon={FaYelp} colorClass="text-red-500" />
-          <IconButton href="#" icon={FaLinkedin} colorClass="text-blue-500" />
-          <IconButton href="#" icon={GrInstagram} colorClass="text-pink-500" />
+          <IconButton href="https://www.yelp.com/biz/tropical-landscaping-salinas" icon={FaYelp} colorClass="text-red-500" ariaLabel="Visit Tropical Landscaping Yelp page"/>
+          <IconButton href="#" icon={FaLinkedin} colorClass="text-blue-500" ariaLabel="Visit Tropical Landscaping LinkedIn page" />
+          <IconButton href="#" icon={GrInstagram} colorClass="text-pink-500" ariaLabel="Visit Tropical Landscaping Instagram page" />
         </div>
         <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
           <div>Tropical Landscaping</div>

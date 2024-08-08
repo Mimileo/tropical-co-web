@@ -20,7 +20,7 @@ export default function Page() {
               src="/avatarborder.png"
               width={500}
               height={500}
-              alt="Screenshot of the dashboard project showing mobile version"
+              alt="Tropical Nursery and Lanscaping Logo"
              
             />
         </div>

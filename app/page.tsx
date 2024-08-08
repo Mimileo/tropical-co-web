@@ -28,7 +28,7 @@ export default function Page() {
             src="/heroscape.png"
             fill
             className="object-cover"
-            alt="Hero Image for Desktop"
+            alt="Landscaping, Nursery in Salinas - Tropical Landscaping"
             priority
           />
         </div>
@@ -39,7 +39,7 @@ export default function Page() {
             src="/heroscape.png"
             fill
             className="object-cover"
-            alt="Hero Image for Mobile"
+            alt="Landscaping, Nursery in Salinas - Tropical Landscaping"
             priority
           />
         </div>
@@ -98,7 +98,7 @@ export default function Page() {
               src="/heroscape.png"
               fill
               className="object-cover"
-              alt="Hero Image for Desktop"
+              alt="Landscaping, Backyard, Nursery in Salinas - Tropical Landscaping"
               priority
             />
           </div>
@@ -109,7 +109,7 @@ export default function Page() {
               src="/heroscape.png"
               fill
               className="object-cover"
-              alt="Hero Image for Mobile"
+              alt="Landscaping, Nursery in Salinas - Tropical Landscaping"
               priority
             />
           </div>
