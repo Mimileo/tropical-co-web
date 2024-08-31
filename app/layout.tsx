@@ -40,13 +40,13 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Tropical Landscaping",
-    "description": "Professional landscaping services in Salinas, CA.",
+    "description": "Professional landscaping services in Salinas, CA - Santa Clara, Monterey, Santa Cruz County, Bay Area, Central Coast",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 Main St",
-      "addressLocality": "Salinas",
+      "streetAddress": "16625 Blackie Rd",
+      "addressLocality": "Prunedale",
       "addressRegion": "CA",
-      "postalCode": "93901",
+      "postalCode": "93907",
       "addressCountry": "US"
     },
     "telephone": "+1-831-663-4616",
