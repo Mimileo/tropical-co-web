@@ -1,16 +1,44 @@
+import { MetadataRoute } from 'next';
 
-import type { MetadataRoute } from 'next';
-// do blog and posts
+const URL = "https://www.tropicallandscaping.tech";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-
-
-  const URL = "https://www.tropicallandscaping.tech";
- 
-
-  const routes = ["", "/about", "/projects","/install", "/services", "/contact"].map((route) => ({
-    url: `${URL}${route}`,
-    lastModified: new Date().toISOString(),
-  }));
-  return [...routes];
+  return [
+    {
+      url: URL,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 1,
+    },
+    {
+      url: `${URL}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${URL}/projects`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${URL}/install`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${URL}/services`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${URL}/contact`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+  ];
 }
