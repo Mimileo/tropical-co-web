@@ -4,8 +4,15 @@ import Image from 'next/image';
 import PhotoAlbum from 'react-photo-album';
 import { useEffect, useState } from 'react';
 
+type Photo = {
+  src: string; // `src` should be a string URL
+  width: number;
+  height: number;
+  blurDataURL?: string;
+};
+
 export default function ProjectsPage() {
-  const [photos, setPhotos] = useState<any[]>([]);
+  const [photos, setPhotos] = useState<Photo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -14,7 +21,7 @@ export default function ProjectsPage() {
       try {
         const response = await fetch('/api/images');
         if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
+        const data: Photo[] = await response.json();
         setPhotos(data);
       } catch (error) {
         setError('Failed to load images');
@@ -36,24 +43,15 @@ export default function ProjectsPage() {
         <h1 className="text-3xl font-bold text-left">Projects</h1>
       </header>
 
-      <section className="max-w-4xl mx-auto bg-white p-8">
+      <section className="max-w-4xl mx-auto bg-white p2">
         <h3 className="text-xl font-medium text-black-800 mb-20">Explore our current and previous projects</h3>
 
         <PhotoAlbum
           layout="rows"
           photos={photos.map((photo) => ({
             ...photo,
-            src: (
-              <Image
-                src={photo.src}
-                width={photo.width}
-                height={photo.height}
-                placeholder="blur"
-                blurDataURL={photo.blurDataURL || ""}
-                alt="Project image"
-                loading="lazy"
-              />
-            ),
+            src: photo.src, // Use the URL as the src
+            // For placeholder images, if needed, use blurDataURL separately in styling or with Image component directly
           }))}
         />
 

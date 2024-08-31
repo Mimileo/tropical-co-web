@@ -41,6 +41,8 @@ export default function Page() {
             className="object-cover"
             alt="Landscaping, Nursery in Salinas - Tropical Landscaping, Bay Area"
             priority
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
           />
         </div>
 
@@ -100,6 +102,8 @@ export default function Page() {
               className="object-cover"
               alt="Landscaping, Backyard, Nursery in Salinas - Tropical Landscaping"
               priority
+              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
             />
           </div>
 
@@ -111,6 +115,8 @@ export default function Page() {
               className="object-cover"
               alt="Landscaping, Nursery in Salinas - Tropical Landscaping"
               priority
+              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
             />
           </div>
 
