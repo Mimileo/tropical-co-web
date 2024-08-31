@@ -28,18 +28,18 @@ export default function Page() {
             src="/heroscape.png"
             fill
             className="object-cover"
-            alt="Landscaping, Nursery in Salinas - Tropical Landscaping"
+            alt="Landscaping, Nursery in Salinas - Tropical Landscaping, Bay Area"
             priority
           />
         </div>
 
         {/* Hero Image for Mobile */}
-        <div className="block md:hidden relative w-full h-[620px]">
+        <div className="block md:hidden relative w-full h-full">
           <Image
             src="/heroscape.png"
             fill
             className="object-cover"
-            alt="Landscaping, Nursery in Salinas - Tropical Landscaping"
+            alt="Landscaping, Nursery in Salinas - Tropical Landscaping, Bay Area"
             priority
           />
         </div>
@@ -95,7 +95,7 @@ export default function Page() {
           {/* Hero Image for Desktop */}
           <div className="hidden md:block relative w-full h-[800px]">
             <Image
-              src="/heroscape.png"
+              src="/garden.png"
               fill
               className="object-cover"
               alt="Landscaping, Backyard, Nursery in Salinas - Tropical Landscaping"
@@ -106,7 +106,7 @@ export default function Page() {
           {/* Hero Image for Mobile */}
           <div className="block md:hidden relative w-full h-[620px]">
             <Image
-              src="/heroscape.png"
+              src="/garden.png"
               fill
               className="object-cover"
               alt="Landscaping, Nursery in Salinas - Tropical Landscaping"
