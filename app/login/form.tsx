@@ -19,6 +19,7 @@ export default function LoginForm() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
 
+  console.log(status);
   useEffect(() => {
     // Redirect logged-in users away from the login page
     if (status === 'authenticated') {
@@ -38,9 +39,16 @@ export default function LoginForm() {
       email,
       password,
     });
+    
 
     if (result?.error) {
-      setErrorMessage(result.error);
+       if (result.error.includes('user not found')) {
+          setErrorMessage('Account does not exist. Please sign up.');
+        } else if (result.error.includes('incorrect credentials')) {
+          setErrorMessage('Incorrect email or password. Please try again.');
+        } else {
+          setErrorMessage('Invalid Credentials');
+        }
     } else if (result?.ok) {
       // Redirect to the dashboard
       router.push('/dashboard');

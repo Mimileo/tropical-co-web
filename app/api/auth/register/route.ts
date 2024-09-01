@@ -4,20 +4,34 @@ import { sql } from '@vercel/postgres';
 
 export async function POST(request: Request) {
   try {
-    const { email, password } = await request.json();
+    const { username, email, password } = await request.json();
+
+    // Check if the email already exists
+    const existingUserResult = await sql`
+      SELECT * FROM users WHERE email = ${email}
+    `;
+    
+    const existingUser = existingUserResult.rows;
+
+    if (existingUser.length > 0) {
+      return NextResponse.json(
+        { message: 'Email already registered.' },
+        { status: 400 }
+      );
+    }
 
     // Hash the password
     const hashedPassword = await hash(password, 10);
 
     // Insert the user into the database
-    const response = await sql`
-      INSERT INTO users (email, password)
-      VALUES (${email}, ${hashedPassword})
+    await sql`
+      INSERT INTO users (username, email, password)
+      VALUES (${username}, ${email}, ${hashedPassword})
     `;
 
     return NextResponse.json({ message: 'Registration successful!' });
   } catch (e) {
-    console.log('Error:', e);
+    console.error('Error during registration:', e);
     return NextResponse.json({ message: 'Registration failed.' }, { status: 500 });
   }
 }

@@ -16,6 +16,18 @@ async function getUser(email: string): Promise<User | undefined> {
   }
 }
 
+async function updateLastLogin(email: string) {
+  try {
+    await sql`
+      UPDATE users
+      SET last_login = NOW()
+      WHERE email = ${email}
+    `;
+  } catch (error) {
+    console.error('Failed to update last login:', error);
+  }
+}
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
@@ -29,11 +41,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           .object({ email: z.string().email(), password: z.string().min(6) })
           .safeParse(credentials);
 
+        if (!parsedCredentials.success) {
+          throw new Error('Invalid input. Please check your credentials.');
+        }
+
+
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
 
           const user = await getUser(email);
           if (user && await bcrypt.compare(password, user.password)) {
+             await updateLastLogin(email);
             return user;
           }
         }

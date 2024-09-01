@@ -9,17 +9,20 @@ import {
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/app/ui/button';
 import React, { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterForm() {
   const [message, setMessage] = useState<string>('');
   const [status, setStatus] = useState<string>('');
   const [disabled, setDisabled] = useState<boolean>(false);
+  const router = useRouter(); // Initialize the router
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email');
     const password = formData.get('password');
+    const username = formData.get('username');
 
     setDisabled(true);
 
@@ -28,13 +31,18 @@ export default function RegisterForm() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ username, email, password }),
     });
 
     const result = await response.json();
     setMessage(result.message);
     setStatus(response.ok ? 'success' : 'error');
     setDisabled(false);
+
+    if (response.ok) {
+      // Redirect to the dashboard on successful registration
+      router.push('/login');
+    }
   };
 
   return (
@@ -46,6 +54,24 @@ export default function RegisterForm() {
           </h1>
           <div className="w-full">
             <div>
+              <label
+                className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+                htmlFor="email"
+              >
+                Username
+              </label>
+               <div className="relative">
+                <input
+                  className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                  id="username"
+                    type="text"
+                    name="username"
+                    placeholder="Enter your username"
+                    required
+                    disabled={disabled}
+                />
+                <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              </div>
               <label
                 className="mb-3 mt-5 block text-xs font-medium text-gray-900"
                 htmlFor="email"

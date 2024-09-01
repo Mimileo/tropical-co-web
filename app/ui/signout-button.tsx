@@ -1,21 +1,18 @@
-// components/SignOutButton.tsx
+'use client'; // Ensure this is marked as a client component
 
-import React from "react";
-import { signOut } from "../../auth";
+import { signOut } from 'next-auth/react';
 
-
-const SignOutButton: React.FC = () => {
+export default function SignOutButton({ children }: { children: React.ReactNode }) {
   const handleSignOut = async () => {
-    await signOut({
-      redirectTo: '/' // Redirect to home page after sign out
-    });
+    await signOut({ callbackUrl: '/login' }); // Redirect to login after sign out
   };
 
   return (
-    <button onClick={handleSignOut} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      Sign Out
+    <button
+      onClick={handleSignOut}
+      className="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
+    >
+      {children}
     </button>
   );
-};
-
-export default SignOutButton;
+}

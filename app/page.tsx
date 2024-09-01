@@ -10,12 +10,9 @@ import { useRouter } from 'next/navigation';
 
 export default function Page() {
   const { data: session, status } = useSession();
-  const router = useRouter();
 
-  // Handle navigation if user is signed in and tries to access the login page
-  if (status === 'authenticated') {
-   // router.push('/dashboard');
-   // return null; // Prevent rendering the page while redirecting
+ if (status === 'authenticated') {
+   console.log("Auth: "+ status);
   }
 
   return (
