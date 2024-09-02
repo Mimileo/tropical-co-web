@@ -48,11 +48,11 @@ export default function Page() {
 
         {/* Text or Content over the Image (Optional) */}
         <div className="absolute w-full lg:w-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
-          <h1 className="text-4xl md:text-6xl font-bold sm:text-5xl lg:text-7xl mb-4 sm:mb-6 lg:mb-8">
+          <h1 className="text-2xl md:text-2xl font-bold sm:text-5xl lg:text-6xl mb-4 sm:mb-6 lg:mb-8">
             Your Landscaping Journey Begins Here
           </h1>
           <p className="text-base md:text-lg lg:text-xl mb-6 sm:mb-8 lg:mb-10">
-            Transforming spaces since 2004
+            Transforming spaces in the Bay Area since 2004
           </p>
 
           {/* Explore More Button */}
@@ -67,12 +67,12 @@ export default function Page() {
 
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row" id="section2">
         <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
-         <h1>Top-Quality Landscaping Services in Salinas, CA</h1>
-          <p className={`${open_sans.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Tropical Landscaping!</strong> A landscape company serving the Bay Area since 2004
+         <h1 className={`${open_sans.className} text-xl font-semibold text-gray-800 md:text-2xl md:leading-normal`}>Top-Quality Landscaping Services in Salinas, CA</h1>
+          <p className={`${open_sans.className} text-gray-800 md:text-md md:leading-normal`}>
+            Tropical Landscaping Company - A landscaping company serving the Bay Area since 2004
           </p>
 
-          <p>Transform your outdoor space with our expert landscaping services in Salinas and the surrounding areas. At Tropical Landscaping, we are committed to providing exceptional, professional service tailored to your unique landscape design needs.</p>
+          <p className={`${open_sans.className} text-gray-800 md:text-md md:leading-normal`}>Transform your outdoor space with our expert landscaping services in Salinas Valley and the surrounding areas, including Santa Cruz, Monterey, and Santa Clara counties. At Tropical Landscaping, we are committed to delivering exceptional, professional service tailored to your unique landscape design needs.</p>
           {status === 'unauthenticated' ? (
               <Link
               href="/login"

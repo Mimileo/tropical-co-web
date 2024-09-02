@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { FaBars, FaTimes, FaTachometerAlt } from "react-icons/fa"; // Import dashboard icon
+import { FaBars, FaTimes, FaTachometerAlt, FaSignInAlt } from "react-icons/fa"; // Import dashboard icon
 import { useSession } from "next-auth/react";
 import TropLogo from "../trop-logo";
 import { AiFillDashboard } from "react-icons/ai";
+import { GrLogin } from "react-icons/gr";
 
 const MainNav = () => {
   const [nav, setNav] = useState(false);
@@ -63,17 +64,32 @@ const MainNav = () => {
           </li>
         ))}
 
-         {session && (
-          <li
-            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline"
-          >
-            <Link href="/dashboard">
-            <AiFillDashboard aria-label="dashboard" size={20} className="inline-block mr-2"/>
+         {(session !== null && session !== undefined) ? 
+         (
+              <li
+                className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline"
+              >
+                <Link href="/dashboard">
+                <AiFillDashboard aria-label="dashboard" size={20} className="inline-block mr-2"/>
+              
 
+                </Link>
+              </li>
+          )  :
+          (   
+            <li
+              className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline"
+            >
+              <Link href="/login">
+              <GrLogin aria-label="login" size={20} className="inline-block mr-2"/>
+            
 
-            </Link>
-          </li>
-        )}
+              </Link>
+            </li>
+          )
+        }
+
+        
       </ul>
 
       <div
