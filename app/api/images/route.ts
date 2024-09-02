@@ -26,9 +26,7 @@ export async function GET() {
         // Check if image format is supported
         const metadata = await image.metadata();
         if (metadata.format && ['jpeg', 'png', 'webp', 'tiff'].includes(metadata.format)) {
-          // Resize the image
-          const resizedImageBuffer = await image.resize(size, size).toBuffer();
-
+       
           return {
             src: `/images/${name}`,
             width: size,
@@ -37,19 +35,19 @@ export async function GET() {
               { src: `/images/${name}?w=${size / 2}&h=${size / 2}`, width: size / 2, height: size / 2 },
               { src: `/images/${name}?w=${size / 4}&h=${size / 4}`, width: size / 4, height: size / 4 },
             ],
-            blurDataURL: `/images/${name}`, // Optional: Use low-res images for placeholder
+            blurDataURL: `/images/${name}`, 
           };
         } else {
           console.warn(`Skipping unsupported format or undefined format: ${name}`);
-          return null; // Skip unsupported or undefined format
+          return null; 
         }
       } catch (error) {
         console.error(`Error processing image: ${name}`, error);
-        return null; // Skip this image if there's an error processing it
+        return null; 
       }
     }));
 
-    // Filter out null values (unsupported formats or errors)
+    // Filter out null values 
     const filteredPhotos = photos.filter(photo => photo !== null);
 
     // Cache the result
@@ -57,7 +55,7 @@ export async function GET() {
 
     return NextResponse.json(filteredPhotos, {
       headers: {
-        'Cache-Control': 'public, max-age=3600, immutable', // Set appropriate caching headers
+        'Cache-Control': 'public, max-age=3600, immutable', // caching headers
       },
     });
   } catch (error) {
