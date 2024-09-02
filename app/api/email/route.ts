@@ -12,7 +12,8 @@ type ResponseData = {
 export async function POST(request: Request) {
   let response: ResponseData = {};
   const body = await request.json();
-  // I know the formData I sent in my request has name, email, and message fields so I'm just manually grabbing them to format a message
+  // I know the formData I sent in my request has name, email, and message fields 
+  // so I'm just manually grabbing them to format a message
   const message = `
     Name: ${body.name}\r\n
     Email: ${body.email}\r\n

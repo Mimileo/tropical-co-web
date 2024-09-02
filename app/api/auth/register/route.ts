@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { hash } from 'bcrypt';
 import { sql } from '@vercel/postgres';
+import { sendWelcomeEmail } from '@/lib/emailUtils.ts/sendWelcomeEmail';
 
 export async function POST(request: Request) {
   try {
@@ -28,6 +29,8 @@ export async function POST(request: Request) {
       INSERT INTO users (username, email, password)
       VALUES (${username}, ${email}, ${hashedPassword})
     `;
+
+    await sendWelcomeEmail({ to: email, name: username });
 
     return NextResponse.json({ message: 'Registration successful!' });
   } catch (e) {
