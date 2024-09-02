@@ -58,6 +58,7 @@ export default function ProjectsPage() {
                 placeholder="blur"
                 blurDataURL={photo.blurDataURL}
                 className="rounded-lg"
+                loading="lazy"
               />
             </div>
           ))}
