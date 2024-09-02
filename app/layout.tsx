@@ -1,3 +1,4 @@
+
 import '@/app/ui/global.css';
 import { inter } from '@/app/ui/fonts';
 import SideNavbar from './ui/navigation/main-nav';
@@ -6,13 +7,13 @@ import Script from 'next/script';
 import { Metadata } from 'next';
 import MainNav from './ui/navigation/main-nav';
 import { SessionProvider } from 'next-auth/react';
+import { usePathname } from 'next/dist/client/components/navigation';
+import CanonicalLink from './components/CanonicalLink';
+
 
 export const metadata: Metadata = {
-  title: "Tropical Lanscaping Company",
+  title: "Tropical Landscaping Company",
   description: "Professional, best landscaping services in Salinas, CA - Monterey, Santa Clara, Santa Cruz County, Bay Area, and Tricounty",
-  alternates: {
-    canonical: 'https://www.tropicallandscaping.tech',
-  },
   icons: {
     icon: [
       {
@@ -36,6 +37,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+ 
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -50,13 +53,14 @@ export default function RootLayout({
       "addressCountry": "US"
     },
     "telephone": "+1-831-663-4616",
-    "url": "https://www.tropicallandscaping.tech/",
+    "url": "https://www.tropicallandscaping.tech", // Update schema with the dynamic URL
     "logo": "https://www.tropicallandscaping.tech/logo.png"
   };
 
   return (
     <html lang="en">
       <head>
+        <CanonicalLink /> 
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-2TJXKRK8WP" />
         <Script id="google-analytics">
           {`
