@@ -1,41 +1,19 @@
 "use client";
 
 import Image from 'next/image';
-import { useEffect, useState, useCallback } from 'react';
 
-type Photo = {
-  src: string;
-  width: number;
-  height: number;
-  blurDataURL?: string;
-};
+const photos = [
+  { src: '/images/image1-min.jpg', width: 600, height: 400 },
+  { src: '/images/image2-min.jpg', width: 600, height: 400 },
+  { src: '/images/image3-min.jpg', width: 600, height: 400 },
+  { src: '/images/image4-min.jpg', width: 600, height: 400 },
+  { src: '/images/image5-min.jpg', width: 600, height: 400 },
+  { src: '/images/image6-min.jpg', width: 600, height: 400 },
+  { src: '/images/image7-min.jpg', width: 600, height: 400 },
+  { src: '/images/image8-min.jpg', width: 600, height: 400 },
+];
 
 export default function ProjectsPage() {
-  const [photos, setPhotos] = useState<Photo[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchImages = useCallback(async () => {
-    try {
-      const response = await fetch('/api/images');
-      if (!response.ok) throw new Error('Network response was not ok');
-      const data: Photo[] = await response.json();
-      setPhotos(data);
-    } catch (error) {
-      setError('Failed to load images');
-      console.error('Failed to fetch images:', error);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchImages();
-  }, [fetchImages]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
-
   return (
     <div className="bg-white min-h-screen">
       <header className="max-w-4xl mx-auto mt-8 bg-white p-8">
@@ -48,15 +26,13 @@ export default function ProjectsPage() {
         </h3>
 
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {photos.map((photo) => (
-            <div key={photo.src} className="relative w-full h-64">
+          {photos.map((photo, index) => (
+            <div key={index} className="relative w-full h-64">
               <Image
                 src={photo.src}
-                alt="Project Image"
+                alt={`Project Image ${index + 1}`}
                 layout="fill"
                 objectFit="cover"
-                placeholder="blur"
-                blurDataURL={photo.blurDataURL}
                 className="rounded-lg"
                 loading="lazy"
               />
