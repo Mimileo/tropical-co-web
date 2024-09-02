@@ -1,16 +1,16 @@
 import fs from 'fs/promises';
 import path from 'path';
 import sharp from 'sharp';
+import { NextResponse } from 'next/server';
 
 const imageCache: Record<string, any> = {};
 
 export async function GET() {
   const cacheKey = 'images';
 
+  // Serve from cache if available
   if (imageCache[cacheKey]) {
-    return new Response(JSON.stringify(imageCache[cacheKey]), {
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return NextResponse.json(imageCache[cacheKey]);
   }
 
   try {
@@ -23,43 +23,46 @@ export async function GET() {
         const image = sharp(imagePath);
         const size = 200;
 
-        // Check if image format is supported by sharp
+        // Check if image format is supported
         const metadata = await image.metadata();
-        if (!['jpeg', 'png', 'webp', 'tiff'].includes(metadata.format)) {
-          console.warn(`Skipping unsupported format: ${name}`);
-          return null; // Skip unsupported format
+        if (metadata.format && ['jpeg', 'png', 'webp', 'tiff'].includes(metadata.format)) {
+          // Resize the image
+          const resizedImageBuffer = await image.resize(size, size).toBuffer();
+
+          return {
+            src: `/images/${name}`,
+            width: size,
+            height: size,
+            srcSet: [
+              { src: `/images/${name}?w=${size / 2}&h=${size / 2}`, width: size / 2, height: size / 2 },
+              { src: `/images/${name}?w=${size / 4}&h=${size / 4}`, width: size / 4, height: size / 4 },
+            ],
+            blurDataURL: `/images/${name}`, // Optional: Use low-res images for placeholder
+          };
+        } else {
+          console.warn(`Skipping unsupported format or undefined format: ${name}`);
+          return null; // Skip unsupported or undefined format
         }
-
-        // Resize the image
-        const resizedImageBuffer = await image.resize(size, size).toBuffer();
-
-        return {
-          src: `/images/${name}?w=${size}&h=${size}`, 
-          width: size,
-          height: size,
-          srcSet: [
-            { src: `/images/${name}?w=${size / 2}&h=${size / 2}`, width: size / 2, height: size / 2 },
-            { src: `/images/${name}?w=${size / 4}&h=${size / 4}`, width: size / 4, height: size / 4 },
-          ],
-          blurDataURL: `/images/${name}`, 
-        };
       } catch (error) {
         console.error(`Error processing image: ${name}`, error);
         return null; // Skip this image if there's an error processing it
       }
     }));
 
-    // Filter out any null values from unsupported images
+    // Filter out null values (unsupported formats or errors)
     const filteredPhotos = photos.filter(photo => photo !== null);
 
+    // Cache the result
     imageCache[cacheKey] = filteredPhotos;
 
-    return new Response(JSON.stringify(filteredPhotos), {
-      headers: { 'Content-Type': 'application/json' },
+    return NextResponse.json(filteredPhotos, {
+      headers: {
+        'Cache-Control': 'public, max-age=3600, immutable', // Set appropriate caching headers
+      },
     });
   } catch (error) {
     console.error('Error retrieving images:', error);
-    return new Response(JSON.stringify({ error: 'Unable to retrieve images' }), {
+    return new NextResponse(JSON.stringify({ error: 'Unable to retrieve images' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
