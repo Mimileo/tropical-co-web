@@ -27,7 +27,18 @@ export default function Page() {
         Whether it is the backyard, front yard, or garden, our expert landscaping services specialize in creating stunning backyard designs that enhance your outdoor living space.
         </h3>
         <p className="mt-8 mb-4 mx-30">Contact us to schedule a consultation and experience the difference our premium maintenance services can make. Let us bring out the full potential of your outdoor environment, ensuring it remains a source of pride and joy year-round.</p>
+       
+       <h1 className="font-bold mt-8 mb-4 text-center">Enhance Your Home’s Value with Expert Landscaping</h1>
 
+<p>Did you know that professional landscaping can increase your home’s resale value by 15-20%? According to <a href="https://www.bankrate.com/homeownership/landscaping-increase-home-value/#:~:text=Landscaping%20can%20increase%20a%20home's%20resale%20value%20by%2015%2D20,of%20your%20home's%20current%20value." target="_blank" rel="noopener noreferrer" className="text-blue-700 underline hover:text-blue-300">Bankrate</a>, a well-maintained landscape significantly boosts your property’s curb appeal and overall worth.</p>
+        <p className="mt-8 mb-4 mx-30">
+        The Benefits of Choosing Tropical Landscaping
+        Balancing work, family, and social commitments can make it difficult to maintain your landscape on your own. Let our professional landscapers take care of your outdoor space, ensuring it looks its best all year round. We pride ourselves on providing reliable, consistent service that enhances the beauty and value of your home.
+        </p>
+        <p className="mt-8 mb-4 mx-30">
+        Get Started Today!
+        If you're seeking top-tier landscaping services in Salinas, CA, look no further. Contact us today or fill out our FREE quote form, and a professional landscaper will get back to you promptly. Let us help you create the outdoor space you've always dreamed of!
+        </p>
       </section>
     </div>
              

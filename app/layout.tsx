@@ -8,8 +8,8 @@ import MainNav from './ui/navigation/main-nav';
 import { SessionProvider } from 'next-auth/react';
 
 export const metadata: Metadata = {
-  title: "Tropical",
-  description: "Professional landscaping services in Salinas, CA - Monterey, Santa Clara, Santa Cruz County, Bay Area, and Tricounty",
+  title: "Tropical Lanscaping Company",
+  description: "Professional, best landscaping services in Salinas, CA - Monterey, Santa Clara, Santa Cruz County, Bay Area, and Tricounty",
   alternates: {
     canonical: 'https://www.tropicallandscaping.tech',
   },

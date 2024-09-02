@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 type Photo = {
   src: string;
@@ -15,24 +15,23 @@ export default function ProjectsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await fetch('/api/images');
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data: Photo[] = await response.json();
-        console.log('Fetched images:', data);
-        setPhotos(data);
-      } catch (error) {
-        setError('Failed to load images');
-        console.error('Failed to fetch images:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchImages();
+  const fetchImages = useCallback(async () => {
+    try {
+      const response = await fetch('/api/images');
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data: Photo[] = await response.json();
+      setPhotos(data);
+    } catch (error) {
+      setError('Failed to load images');
+      console.error('Failed to fetch images:', error);
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchImages();
+  }, [fetchImages]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -44,7 +43,9 @@ export default function ProjectsPage() {
       </header>
 
       <section className="max-w-4xl mx-auto bg-white p-4">
-        <h3 className="text-xl font-medium text-black mb-8">Explore our current and previous projects</h3>
+        <h3 className="text-xl font-medium text-black mb-8">
+          Explore our current and previous projects
+        </h3>
 
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {photos.map((photo) => (
