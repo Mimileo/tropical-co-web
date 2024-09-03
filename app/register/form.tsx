@@ -5,6 +5,9 @@ import {
   AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
+  EyeSlashIcon,
+  EyeIcon,
+  UserIcon,
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/app/ui/button';
@@ -15,6 +18,8 @@ export default function RegisterForm() {
   const [message, setMessage] = useState<string>('');
   const [status, setStatus] = useState<string>('');
   const [disabled, setDisabled] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false); 
+
   const router = useRouter(); // Initialize the router
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -70,7 +75,7 @@ export default function RegisterForm() {
                     required
                     disabled={disabled}
                 />
-                <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                <UserIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
               </div>
               <label
                 className="mb-3 mt-5 block text-xs font-medium text-gray-900"
@@ -102,7 +107,7 @@ export default function RegisterForm() {
                 <input
                   className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
                   id="password"
-                  type="password"
+                  type={showPassword ? 'text' : 'password'} 
                   name="password"
                   placeholder="Enter password"
                   required
@@ -110,6 +115,18 @@ export default function RegisterForm() {
                   disabled={disabled}
                 />
                 <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                 <button
+                  type="button"
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                  onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
+                >
+                  {showPassword ? (
+                    <EyeSlashIcon className="h-5 w-5 text-gray-500" />
+                  ) : (
+                    <EyeIcon className="h-5 w-5 text-gray-500" />
+                  )}
+                </button>
+              
               </div>
             </div>
           </div>

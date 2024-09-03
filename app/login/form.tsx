@@ -8,6 +8,8 @@ import {
   AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
+  EyeSlashIcon,
+  EyeIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
 import Alert from '../ui/alert';
@@ -17,6 +19,7 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState<boolean>(false); 
   const router = useRouter();
 
   console.log(status);
@@ -95,7 +98,7 @@ export default function LoginForm() {
               <input
                 className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
                 id="password"
-                type="password"
+                type={showPassword ? 'text' : 'password'} 
                 name="password"
                 placeholder="Enter password"
                 value={password}
@@ -104,6 +107,17 @@ export default function LoginForm() {
                 minLength={6}
               />
               <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+             <button
+                  type="button"
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                  onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
+                >
+                  {showPassword ? (
+                    <EyeSlashIcon className="h-5 w-5 text-gray-500" />
+                  ) : (
+                    <EyeIcon className="h-5 w-5 text-gray-500" />
+                  )}
+                </button>
             </div>
           </div>
         </div>
