@@ -7,9 +7,11 @@ import { ScrollButton } from './ui/scrollbutton';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import CSLBButton from './components/cslbButton';
 
 export default function Page() {
   const { data: session, status } = useSession();
+  const licensed = "https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=859434"
 
  if (status === 'authenticated') {
    console.log("Auth: "+ status);
@@ -69,9 +71,14 @@ export default function Page() {
         <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
          <h1 className={`${open_sans.className} text-xl font-semibold text-gray-800 md:text-2xl md:leading-normal`}>Top-Quality Landscaping Services in the Bay Area</h1>
           <p className={`${open_sans.className} text-gray-800 md:text-md md:leading-normal`}>
-            Tropical Landscaping Company - A landscaping company serving the Bay Area since 2004
+            <strong>Tropical Landscaping Company</strong> - A landscaping company serving the Bay Area since 2004
           </p>
+         
+          <div className="mx-auto">
+          <p className='mb-2'>Licensed under <strong>Contractors State License Board </strong></p>
+           <CSLBButton licenseNumber="859434" href={licensed} />
 
+          </div>
           <p className={`${open_sans.className} text-gray-800 md:text-md md:leading-normal`}>Transform your outdoor space with our expert landscaping services in Salinas Valley and the surrounding areas, including Santa Cruz, Monterey, and Santa Clara counties. At Tropical Landscaping, we are committed to delivering exceptional, professional service tailored to your unique landscape design needs.</p>
           {status === 'unauthenticated' ? (
               <Link

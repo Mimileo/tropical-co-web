@@ -3,9 +3,12 @@ import { lusitana, open_sans } from "../ui/fonts";
 import SideNavbar from "../ui/navigation/main-nav";
 import TropLogo from "../ui/trop-logo";
 import Image from 'next/image';
+import CSLBButton from "../components/cslbButton";
 
 
 export default function Page() {
+
+  const licensed = "https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=859434"
   return (
     
      <main className="flex min-h-screen flex-col p-0">
@@ -25,8 +28,24 @@ export default function Page() {
             />
         </div>
         <div className="flex items-center justify-center p-3 md:w-3/5 md:px-4 md:py-12">
-        <div className="mb-3 flex-col space-x-12 ">
-            <strong><h1 className={`${open_sans.className} text-xl px-10 mb-20`}>Bringing Your Landscaping Dreams to Life</h1></strong>
+        <div className="mb-3 flex flex-col space-y-10 px-10 md:px-20">          
+           
+              
+
+            
+            <h1 className={`${open_sans.className} font-black text-xl text-gray-800 md:text-xl`}>
+            Bringing Top Landscaping to the Bay Area!</h1>
+
+            <h1 className={`${open_sans.className} font-extrabold text-xl text-gray-800 md:text-xl md:leading-normal mb-20`}>
+            Quailty and industry regulations are our priority! We are licensed under the Contractors State License Board!
+
+            </h1>
+             
+         
+           <div className="mx-auto">
+           <CSLBButton licenseNumber="859434" href={licensed} />
+
+             </div>
 
           <p className={`${open_sans.className} text-xl text-gray-800 md:text-xl  mb-20`}>
 
@@ -43,9 +62,11 @@ export default function Page() {
             Our dedication to client satisfaction sets us apart as the go-to landscapers in Salinas, CA.</p>
 
     
-          <p className={`${open_sans.className} text-xl text-gray-800 md:text-xl md:leading-normal`}>
+          <p className={`${open_sans.className} text-xl text-gray-800 md:text-xl md:leading-normal mx-auto`}>
           <strong>Call us at <a className="font-bold text-blue-600 underline dark:text-blue-500 hover:no-underline" href={"tel:8316634616"}>(831) 663 - 4616</a> for a consultation! </strong>
+        
           </p>
+        
           
         </div>
         
